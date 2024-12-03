@@ -38,6 +38,10 @@ public class PalmService {
         byte[] fw = new byte[20];
         byte[] sn = new byte[17];
         int enRet = SDPVD310API.instanceDll.SD_API_OpenDev(fw, sn);
+        int deviceStatus = SDPVD310API.instanceDll.SD_API_GetDevStatus();
+        if (deviceStatus != 0) {
+            throw new RuntimeException("Device is not connected or not recognized.");
+        }
         if (enRet != 0) {
             throw new RuntimeException("Failed to open device");
         }

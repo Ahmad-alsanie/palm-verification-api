@@ -15,7 +15,7 @@ public class PalmController {
     private PalmService palmService;
 
     @PostMapping("/store")
-    public ResponseEntity<Map<String, String>> storePalmData(@RequestParam String school_id, @RequestParam byte[] palm_binary) {
+    public ResponseEntity<Map<String, String>> storePalmData(@RequestParam String school_id, @RequestBody byte[] palm_binary) {
         String palmId = palmService.storePalmData(school_id, palm_binary);
         if (palmId != null) {
             Map<String, String> response = new HashMap<>();
@@ -27,7 +27,7 @@ public class PalmController {
     }
 
     @PostMapping("/validate")
-    public ResponseEntity<Map<String, String>> validatePalmData(@RequestParam String school_id, @RequestParam byte[] palm_binary) {
+    public ResponseEntity<Map<String, String>> validatePalmData(@RequestParam String school_id, @RequestBody byte[] palm_binary) {
         String palmId = palmService.validatePalmData(school_id, palm_binary);
         if (palmId != null) {
             return ResponseEntity.ok(Map.of("palm_id", palmId));
