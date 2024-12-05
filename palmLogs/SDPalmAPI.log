@@ -70,3 +70,32 @@ Logone start at : 2024-12-03 12:04:54
 [2024-12-03 12:04:54.909][P: 4040/T: 6580][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
 [2024-12-03 12:04:54.910][P: 4040/T: 6580][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
 [2024-12-03 12:04:54.913][P: 4040/T: 6580][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77
+[2024-12-03 12:06:56.958][P: 4040/T:20488][DBG][SDPVD310API.c][SD_API_Uninit][line:166]API去初始化
+[2024-12-03 12:06:56.958][P: 4040/T:20488][ERR][CTGPVDeviceAPI.c][device_cancel_opreation][line:828]取消采集
+[2024-12-03 12:06:56.960][P: 4040/T:20488][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_UnInit][line:429]unInit success
+Logone start at : 2024-12-04 13:13:38
+[2024-12-04 13:13:38.410][P:28544/T:  976][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
+[2024-12-04 13:13:38.412][P:28544/T:  976][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
+[2024-12-04 13:13:38.414][P:28544/T:  976][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77
+[2024-12-04 14:15:54.082][P:28544/T:30884][DBG][SDPVD310API.c][SD_API_Uninit][line:166]API去初始化
+[2024-12-04 14:15:54.082][P:28544/T:30884][ERR][CTGPVDeviceAPI.c][device_cancel_opreation][line:828]取消采集
+[2024-12-04 14:15:54.085][P:28544/T:30884][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_UnInit][line:429]unInit success
+Logone start at : 2024-12-05 14:55:28
+[2024-12-05 14:55:28.280][P:28764/T:23464][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
+[2024-12-05 14:55:28.281][P:28764/T:23464][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
+[2024-12-05 14:55:28.285][P:28764/T:23464][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77
+[2024-12-05 14:56:09.945][P:28764/T:20944][ERR][SDPVD310API.c][Register][line:651]设备未连接,需检查设备状态并重新打开设备
+[2024-12-05 15:25:07.197][P:28764/T:25400][DBG][SDPVD310API.c][SD_API_Uninit][line:166]API去初始化
+[2024-12-05 15:25:07.197][P:28764/T:25400][ERR][CTGPVDeviceAPI.c][device_cancel_opreation][line:828]取消采集
+[2024-12-05 15:25:07.201][P:28764/T:25400][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_UnInit][line:429]unInit success
+Logone start at : 2024-12-05 15:34:44
+[2024-12-05 15:34:44.280][P:27672/T: 9852][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
+[2024-12-05 15:34:44.282][P:27672/T: 9852][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
+[2024-12-05 15:34:44.284][P:27672/T: 9852][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77
+[2024-12-05 15:43:13.523][P:27672/T: 5080][DBG][SDPVD310API.c][SD_API_Uninit][line:166]API去初始化
+[2024-12-05 15:43:13.523][P:27672/T: 5080][ERR][CTGPVDeviceAPI.c][device_cancel_opreation][line:828]取消采集
+[2024-12-05 15:43:13.526][P:27672/T: 5080][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_UnInit][line:429]unInit success
+Logone start at : 2024-12-05 15:43:20
+[2024-12-05 15:43:20.267][P: 5716/T:15188][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
+[2024-12-05 15:43:20.268][P: 5716/T:15188][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
+[2024-12-05 15:43:20.270][P: 5716/T:15188][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77

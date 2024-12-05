@@ -3,9 +3,11 @@ package com.palm.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import org.tg.vein.SDPVD310API;
 
 @Entity
+@Table(name = "PALM_DATA")
 public class PalmData {
     @Id
     private String palmId;
