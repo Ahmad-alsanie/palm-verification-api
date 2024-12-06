@@ -52,6 +52,24 @@ public class PalmServiceTest {
     }
 
     @Test
+    void testValidatePalmData_found() {
+        String schoolId = "school-123";
+        byte[] palmBinary = new byte[]{1, 2, 3};
+        PalmData existingPalmData = spy(new PalmData("palm-123", schoolId, palmBinary));
+
+        // Mock the matchesPalmBinary method to always return true for this test case
+        doReturn(true).when(existingPalmData).matchesPalmBinary(eq(palmBinary));
+
+        when(palmDataRepository.findAll()).thenReturn(java.util.Collections.singletonList(existingPalmData));
+
+        String resultPalmId = palmService.validatePalmData(schoolId, palmBinary);
+
+        assertEquals("palm-123", resultPalmId);
+        verify(palmDataRepository, times(1)).findAll();
+    }
+
+
+    @Test
     void testStorePalmData_sdkNotInitialized() {
         palmService.uninitSDK();
         String schoolId = "school-123";
