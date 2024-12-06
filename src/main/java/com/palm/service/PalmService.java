@@ -5,6 +5,8 @@ import com.palm.repository.PalmDataRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tg.vein.SDPVD310API;
@@ -19,13 +21,15 @@ public class PalmService {
     @Autowired
     private PalmDataRepository palmDataRepository;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PalmService.class);
+
     @PostConstruct
     public void initSDK() {
         final String licensePath = "license.dat";
         int enRet = SDPVD310API.instanceDll.SD_API_Init(new CommCallBackImpl(), licensePath, 1, 1);
         if (enRet == 0) {
             sdkInitialized = true;
-            System.out.println("SDK initialized successfully.");
+            LOGGER.info("SDK initialized successfully.");
         } else {
             throw new RuntimeException("Failed to initialize SDK");
         }
@@ -36,7 +40,7 @@ public class PalmService {
         if (sdkInitialized) {
             SDPVD310API.instanceDll.SD_API_Uninit();
             sdkInitialized = false;
-            System.out.println("SDK uninitialized successfully.");
+            LOGGER.error("SDK uninitialized successfully.");
         }
     }
 
@@ -49,7 +53,7 @@ public class PalmService {
         String palmId = UUID.randomUUID().toString();
         PalmData palmData = new PalmData(palmId, schoolId, palmBinary);
         palmDataRepository.save(palmData);
-        System.out.println("Palm data stored successfully with palmId: " + palmId);
+        LOGGER.info("Palm data stored successfully with palmId: {}", palmId);
         return palmId;
     }
 
@@ -68,10 +72,10 @@ public class PalmService {
         Optional<PalmData> palmDataOpt = palmDataRepository.findById(palmId);
         if (palmDataOpt.isPresent() && palmDataOpt.get().getSchoolId().equals(schoolId)) {
             palmDataRepository.deleteById(palmId);
-            System.out.println("Palm data deleted successfully for palmId: " + palmId);
+            LOGGER.info("Palm data deleted successfully for palmId: {}", palmId);
             return true;
         }
-        System.out.println("Palm data not found for palmId: " + palmId);
+        LOGGER.error("Palm data not found for palmId: {}", palmId);
         return false;
     }
 

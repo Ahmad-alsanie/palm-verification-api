@@ -99,3 +99,6 @@ Logone start at : 2024-12-05 15:43:20
 [2024-12-05 15:43:20.267][P: 5716/T:15188][DBG][SDPVD310API.c][SD_API_Init][line:139]API初始化
 [2024-12-05 15:43:20.268][P: 5716/T:15188][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_Init][line:359]device version:0.2.0.10
 [2024-12-05 15:43:20.270][P: 5716/T:15188][ERR][CTGPVServiceAPI.c][ServiceAPI_Init][line:751]server version:0.0.0.77
+[2024-12-05 17:56:32.863][P: 5716/T:32724][DBG][SDPVD310API.c][SD_API_Uninit][line:166]API去初始化
+[2024-12-05 17:56:32.863][P: 5716/T:32724][ERR][CTGPVDeviceAPI.c][device_cancel_opreation][line:828]取消采集
+[2024-12-05 17:56:32.871][P: 5716/T:32724][ERR][CTGPVDeviceAPI.c][TGPVDeviceAPI_UnInit][line:429]unInit success
