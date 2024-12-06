@@ -5,12 +5,13 @@ import com.palm.repository.PalmDataRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.tg.vein.SDPVD310API;
-
+import javax.sql.DataSource;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,7 +22,14 @@ public class PalmService {
     @Autowired
     private PalmDataRepository palmDataRepository;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PalmService.class);
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+
+    @Value("${spring.datasource.username}")
+    private String dbUsername;
+
+    @Value("${spring.datasource.password}")
+    private String dbPassword;
 
     @PostConstruct
     public void initSDK() {
@@ -29,7 +37,7 @@ public class PalmService {
         int enRet = SDPVD310API.instanceDll.SD_API_Init(new CommCallBackImpl(), licensePath, 1, 1);
         if (enRet == 0) {
             sdkInitialized = true;
-            LOGGER.info("SDK initialized successfully.");
+            System.out.println("SDK initialized successfully.");
         } else {
             throw new RuntimeException("Failed to initialize SDK");
         }
@@ -40,7 +48,7 @@ public class PalmService {
         if (sdkInitialized) {
             SDPVD310API.instanceDll.SD_API_Uninit();
             sdkInitialized = false;
-            LOGGER.error("SDK uninitialized successfully.");
+            System.out.println("SDK uninitialized successfully.");
         }
     }
 
@@ -53,7 +61,7 @@ public class PalmService {
         String palmId = UUID.randomUUID().toString();
         PalmData palmData = new PalmData(palmId, schoolId, palmBinary);
         palmDataRepository.save(palmData);
-        LOGGER.info("Palm data stored successfully with palmId: {}", palmId);
+        System.out.println("Palm data stored successfully with palmId: " + palmId);
         return palmId;
     }
 
@@ -72,10 +80,10 @@ public class PalmService {
         Optional<PalmData> palmDataOpt = palmDataRepository.findById(palmId);
         if (palmDataOpt.isPresent() && palmDataOpt.get().getSchoolId().equals(schoolId)) {
             palmDataRepository.deleteById(palmId);
-            LOGGER.info("Palm data deleted successfully for palmId: {}", palmId);
+            System.out.println("Palm data deleted successfully for palmId: " + palmId);
             return true;
         }
-        LOGGER.error("Palm data not found for palmId: {}", palmId);
+        System.out.println("Palm data not found for palmId: " + palmId);
         return false;
     }
 
