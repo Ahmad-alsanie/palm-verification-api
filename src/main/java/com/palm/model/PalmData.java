@@ -6,6 +6,8 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import org.tg.vein.SDPVD310API;
 
+import java.util.Arrays;
+
 @Entity
 @Table(name = "PALM_DATA")
 public class PalmData {
@@ -35,8 +37,16 @@ public class PalmData {
     public boolean matchesPalmBinary(byte[] otherPalmBinary) {
         // Use the SDK method to perform a proper comparison between the palm templates
         int[] matchScore = new int[1];
-        int result = SDPVD310API.instanceDll.SD_API_Match1VN(this.palmTemplate, otherPalmBinary, 1, matchScore, new byte[getTemplateSize()]);
-        return result == 0 && matchScore[0] > 80; // Assuming a match score threshold of 80 for successful matching
+        byte[] bufferSize = new byte[getTemplateSize()];
+        int result = SDPVD310API.instanceDll.SD_API_Match1VN( otherPalmBinary,this.palmTemplate,1, matchScore, bufferSize);
+        System.out.println("Stored PalmBinaryTemplate: "+ Arrays.toString(this.palmTemplate));
+        System.out.println();
+        System.out.println("Received PalmBinary: "+ Arrays.toString(otherPalmBinary));
+        System.out.println();
+        System.out.println("enRet: "+ result);
+        System.out.println();
+        System.out.println("BufferSize: " + Arrays.toString(bufferSize));
+        return result == 0;
     }
 
     private int getTemplateSize() {

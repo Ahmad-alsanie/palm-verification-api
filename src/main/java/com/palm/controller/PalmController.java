@@ -14,7 +14,7 @@ public class PalmController {
     @Autowired
     private PalmService palmService;
 
-    @PostMapping("/store")
+    @PostMapping(value = "/store", consumes = "application/octet-stream")
     public ResponseEntity<Map<String, String>> storePalmData(@RequestParam String school_id, @RequestBody byte[] palm_binary) {
         String palmId = palmService.storePalmData(school_id, palm_binary);
         if (palmId != null) {
@@ -26,7 +26,7 @@ public class PalmController {
         }
     }
 
-    @PostMapping("/validate")
+    @PostMapping(value = "/validate", consumes = "application/octet-stream")
     public ResponseEntity<Map<String, String>> validatePalmData(@RequestParam String school_id, @RequestBody byte[] palm_binary) {
         String palmId = palmService.validatePalmData(school_id, palm_binary);
         if (palmId != null) {
